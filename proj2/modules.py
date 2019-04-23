@@ -12,6 +12,16 @@ class Module(object):
     def param(self):
         return []
 
+    def zero_grad(self):
+        pass
+
+    def __call__(self, *input):
+        if len(input)==1: # for normal modules
+            return self.forward(input[0])
+        elif len(input)==2: # for MSE loss. the 1st input is prediction and the second one is ground truth
+            return self.forward(input[0], input[1])
+
+
 class ReLU(Module):
 
     def __init__(self):
@@ -19,7 +29,7 @@ class ReLU(Module):
 
     def forward(self, input):
         self.input = input
-        return input * (input>0)
+        return input * (input>0).float()
 
     def backward(self, gradwrtoutput):
         grad = empty(*gradwrtoutput.shape)
@@ -47,8 +57,10 @@ class Linear(Module):
         self.input = None
         self.input_num = input_num
         self.output_num = output_num
-        self.weight = empty((self.input_num, self.output_num))
-        self.bias = empty((1, self.output_num))
+
+        self.weight = empty((self.input_num, self.output_num)).normal_()
+        self.bias = empty((1, self.output_num)).normal_()
+
         self.weight_grad = 0
         self.bias_grad = 0
 
@@ -64,10 +76,74 @@ class Linear(Module):
 
     def backward(self, gradwrtoutput):
         '''
-        :param gradwrtoutput: (batchsize, output_num)
+        :param gradwrtoutput dL/dy: (batchsize, output_num)
         :return: dL/dX: (batchsize, input_num)
         '''
         ones = empty((1, gradwrtoutput.shape[0])).fill_(1)
-        self.bias_grad += ones.matmul(gradwrtoutput)
-        self.weight_grad += self.input.t().matmul(gradwrtoutput)
-        return gradwrtoutput.matmul(self.weight.t())
+        self.bias_grad += ones.matmul(gradwrtoutput)  # dL/db = 1^T * dL/dy
+        self.weight_grad += self.input.t().matmul(gradwrtoutput)  # dL/dW = X^T * dL/dy
+        return gradwrtoutput.matmul(self.weight.t())  # dL/dX = dL/dy * W^T
+
+    def param(self):
+        return [[self.weight, self.weight_grad], [self.bias, self.bias_grad]]
+
+    def zero_grad(self):
+        self.weight_grad = 0
+        self.weight_grad = 0
+
+class Sequential(Module):
+
+    def __init__(self, *modules):
+        self.modules = modules
+        self.input = None
+
+    def forward(self, input):
+        self.input = input
+        y = input
+        for m in self.modules:
+            y = m(y)
+        return y
+
+    def backward(self, gradwrtoutput):
+        reversed_modules = self.modules[::-1]
+        grad = gradwrtoutput
+        for m in reversed_modules:
+            grad = m.backward(grad)
+        return grad
+
+    def param(self):
+        params = []
+        for m in self.modules:
+            params.append(m.param())
+        return params
+
+    def zero_grad(self):
+        for m in self.modules:
+            m.zero_grad()
+
+class LossMSE(Module):
+
+    def __init__(self):
+        self.pred = None
+        self.gt = None
+
+    def forward(self, pred, gt):
+        self.pred = pred
+        self.gt = gt
+        return ((pred-gt)**2).mean()
+
+    def backward(self, model):
+        Nb = self.pred.shape[0] # batchsize
+        Nf = self.pred.shape[1] # feature size
+        model.backward((self.pred-self.gt)*2/(Nb*Nf))
+
+class optimizer():
+    def __init__(self, lr, model):
+        self.lr = lr
+        self.model = model
+
+    def step(self):
+        for m in self.model.modules:
+            if m.param()!=[]:
+                m.weight -= self.lr * m.weight_grad
+                m.bias -= self.lr * m.bias_grad
