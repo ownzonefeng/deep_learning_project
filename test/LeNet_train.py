@@ -34,7 +34,7 @@ data_test_loader = DataLoader(data_test, batch_size=20)
 
 net = LeNet()
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr=1.2e-1)
+optimizer = optim.Adam(net.parameters(), lr=1.2e-2)
 
 
 def train(epoch):
