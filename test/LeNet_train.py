@@ -29,12 +29,12 @@ data_test_loader = DataLoader(data_test, batch_size=1024, num_workers=12)
 data = prologue.generate_pair_sets(1000)
 data_train = PairDataset(data, train=True, aux_labels=True)
 data_test = PairDataset(data, train=False, aux_labels=True)
-data_train_loader = DataLoader(data_train, batch_size=20, shuffle=False)
+data_train_loader = DataLoader(data_train, batch_size=500, shuffle=True)
 data_test_loader = DataLoader(data_test, batch_size=20)
 
 net = LeNet()
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr=1.2e-2)
+optimizer = optim.Adam(net.parameters(), lr=1e-2)
 
 
 def train(epoch):
@@ -43,6 +43,7 @@ def train(epoch):
     for i, (images, labels) in enumerate(data_train_loader):
         optimizer.zero_grad()
         labels = labels[:, 0]
+        images = torch.unsqueeze(images[:, 0], dim=1)
         output = net(images)
 
         pred = output.detach().max(1)[1]
@@ -54,7 +55,7 @@ def train(epoch):
 
         loss.backward()
         optimizer.step()
-    print('Train loss:', torch.mean(torch.tensor(loss_list)).item())
+    #print(epoch,'Train loss:', torch.mean(torch.tensor(loss_list)).item())
     return loss_list, batch_list, epoch
 
 
@@ -63,6 +64,7 @@ def test(epoch):
     total_correct = 0
     avg_loss = 0.0
     for i, (images, labels) in enumerate(data_test_loader):
+        images = torch.unsqueeze(images[:, 0], dim=1)
         output = net(images)
         labels = labels[:, 0]
         avg_loss += criterion(output, labels).sum()
@@ -72,9 +74,9 @@ def test(epoch):
 
     avg_loss /= len(data_test)
     print('Epoch: %d, Test Avg. Loss: %f, Accuracy: %f' % (
-        epoch, avg_loss.detach().item(), float(total_correct) / len(data_test)))
+       epoch, avg_loss.detach().item(), float(total_correct) / len(data_test)))
 
 
-for i in range(5):
-    _, _, epo = train(i)
-    test(epo + 1)
+for i in range(25):
+    _, _, epo = train(i + 1)
+    test(epo)
