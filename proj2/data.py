@@ -26,6 +26,10 @@ class dataloader():
             self.n += self.batchsize
             return self.x[start:end], self.label_1d[start:end], self.label_2d[start:end]
 
+    def __len__(self):
+        return 1000/self.batchsize
+
+
 def label_2dto1d(label_2d):
     '''
 

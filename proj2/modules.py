@@ -1,5 +1,5 @@
 from torch import empty
-
+import math
 
 class Module(object):
 
@@ -57,9 +57,9 @@ class Linear(Module):
         self.input = None
         self.input_num = input_num
         self.output_num = output_num
-
-        self.weight = empty((self.input_num, self.output_num)).normal_()
-        self.bias = empty((1, self.output_num)).normal_()
+        # TODO: INITIALIZATION
+        self.weight = empty((self.input_num, self.output_num)).uniform_(-1/math.sqrt(self.input_num), 1/math.sqrt(self.input_num))#.normal_()/5
+        self.bias = empty((1, self.output_num)).uniform_(-1/math.sqrt(self.input_num), 1/math.sqrt(self.input_num))#.normal_()/5
 
         self.weight_grad = 0
         self.bias_grad = 0
@@ -89,7 +89,7 @@ class Linear(Module):
 
     def zero_grad(self):
         self.weight_grad = 0
-        self.weight_grad = 0
+        self.bias_grad = 0
 
 class Sequential(Module):
 
@@ -123,21 +123,22 @@ class Sequential(Module):
 
 class LossMSE(Module):
 
-    def __init__(self):
+    def __init__(self,model):
         self.pred = None
         self.gt = None
+        self.model = model
 
     def forward(self, pred, gt):
         self.pred = pred
         self.gt = gt
         return ((pred-gt)**2).mean()
 
-    def backward(self, model):
+    def backward(self):
         Nb = self.pred.shape[0] # batchsize
         Nf = self.pred.shape[1] # feature size
-        model.backward((self.pred-self.gt)*2/(Nb*Nf))
+        self.model.backward((self.pred-self.gt)*2/Nb/Nf)
 
-class optimizer():
+class SGD():
     def __init__(self, lr, model):
         self.lr = lr
         self.model = model
