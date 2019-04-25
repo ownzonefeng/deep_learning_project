@@ -24,7 +24,7 @@ print_test_data = 1
 
 def train(epoch):
     net.train()
-    loss_list, batch_list = [], []
+    total_loss = 0
     total_correct = 0
     for i, (images, labels, digits) in enumerate(data_train_loader):
         optimizer.zero_grad()
@@ -40,23 +40,22 @@ def train(epoch):
             loss = criterion(output, one_hot_labels)
             pred = output.detach().max(1)[1]
 
-        loss_list.append(loss.detach().item())
-        batch_list.append(i + 1)
-
+        total_loss += loss.detach().item()
         total_correct += pred.eq(labels.view_as(pred)).sum()
 
         loss.backward()
         optimizer.step()
+    avg_loss = total_loss / len(data_train)
+    accuracy = float(total_correct) / len(data_train)
     if print_train_data:
-        print('Epoch: %d, Train Avg. Loss: %f, Accuracy: %f' % (
-            epoch, torch.mean(torch.tensor(loss_list)).item(), float(total_correct) / len(data_train)))
-    return loss_list, batch_list, epoch
+        print('Epoch: %d, Train Avg. Loss: %f, Accuracy: %f' % (epoch, avg_loss, accuracy))
+    return avg_loss, accuracy
 
 
 def test(epoch):
     net.eval()
     total_correct = 0
-    avg_loss = 0.0
+    total_loss = 0.0
     for i, (images, labels, digits) in enumerate(data_test_loader):
         output = net(images, w_share=weight_sharing_status, aux_loss=aux_labels_status)
 
@@ -71,16 +70,16 @@ def test(epoch):
             loss_1 = criterion(output, one_hot_labels)
             pred = output.detach().max(1)[1]
 
-        avg_loss += loss_1
+        total_loss += loss_1
         total_correct += pred.eq(labels.view_as(pred)).sum()
 
-    avg_loss /= len(data_test)
-
+    avg_loss = float(total_loss) / len(data_test)
+    accuracy = float(total_correct) / len(data_test)
     if print_test_data:
-        print('Epoch: %d, Test  Avg. Loss: %f, Accuracy: %f' % (
-            epoch, avg_loss.detach().item(), float(total_correct) / len(data_test)))
+        print('Epoch: %d, Test  Avg. Loss: %f, Accuracy: %f' % (epoch, avg_loss, accuracy))
     if print_train_data and print_test_data:
         print('\n')
+    return avg_loss, accuracy
 
 
 def convert_one_hot(original_labels):
@@ -100,7 +99,7 @@ def start_learning(epoch = 25, w_sharing = 1, aux_labels = 1, print_train = 1, p
     aux_labels_status = aux_labels
     print_train_data = print_train
     print_test_data = print_test
-
+    print("=" * 100)
     print('Weight sharing:', bool(weight_sharing_status), '   Auxiliary losses:', bool(aux_labels_status))
 
     para_size = 0
@@ -108,10 +107,16 @@ def start_learning(epoch = 25, w_sharing = 1, aux_labels = 1, print_train = 1, p
         para_size += torch.prod(torch.tensor(i.size()))
     print('Parameters quantity:', para_size.item() // 2, '\n')
 
-    for i in range(25):
-        loss, batch, epo = train(i + 1)
-        test(epo)
+    train_accuracy_list = []
+    test_accuracy_list = []
+
+    for i in range(epoch):
+        train_loss,  train_accuracy = train(i + 1)
+        train_accuracy_list.append(train_accuracy)
+        test_loss, test_accuracy = test(i + 1)
+        test_accuracy_list.append(test_accuracy)
+    print("After %d epoch of training, the accuracy on test set is %f\n" % (epoch, max(test_accuracy_list)))
 
 
 if __name__ == '__main__':
-    start_learning()
+    start_learning(epoch = 25, w_sharing = 1, aux_labels = 1, print_train = 1, print_test = 1)
