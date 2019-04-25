@@ -19,6 +19,6 @@ class PairDataset(Dataset):
 
     def __getitem__(self, idx):
         if self.aux_labels:
-            return self.features[idx], self.digit_labels[idx]
+            return self.features[idx], self.bool_labels[idx], self.digit_labels[idx]
         else:
-            return self.features[idx], self.bool_labels[idx]
+            return self.features[idx], self.bool_labels[idx], self.bool_labels[idx]
