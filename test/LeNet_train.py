@@ -29,12 +29,12 @@ data_test_loader = DataLoader(data_test, batch_size=1024, num_workers=12)
 data = prologue.generate_pair_sets(1000)
 data_train = PairDataset(data, train=True, aux_labels=True)
 data_test = PairDataset(data, train=False, aux_labels=True)
-data_train_loader = DataLoader(data_train, batch_size=500, shuffle=True)
+data_train_loader = DataLoader(data_train, batch_size=100, shuffle=True)
 data_test_loader = DataLoader(data_test, batch_size=20)
 
 net = LeNet()
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr=1e-2)
+optimizer = optim.Adagrad(net.parameters(), lr=1e-2)
 
 
 def train(epoch):
@@ -46,7 +46,6 @@ def train(epoch):
         images = torch.unsqueeze(images[:, 0], dim=1)
         output = net(images)
 
-        pred = output.detach().max(1)[1]
 
         loss = criterion(output, labels)
 
