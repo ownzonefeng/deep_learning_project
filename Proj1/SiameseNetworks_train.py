@@ -30,11 +30,13 @@ def train(epoch):
         optimizer.zero_grad()
         output = net(images, w_share=weight_sharing_status, aux_loss=aux_labels_status)
         if aux_labels_status:
-            one_hot_labels = torch.cat([convert_one_hot(digits[:, 0]), convert_one_hot(digits[:, 1])], dim=1)
-            loss = criterion(output, one_hot_labels)
-            pred_0 = output[:, 0:10].detach().max(1)[1]
-            pred_1 = output[:, 10:].detach().max(1)[1]
-            pred = (pred_0 <= pred_1).long()
+            one_hot_labels_digits_0 = convert_one_hot(digits[:, 0])
+            one_hot_labels_digits_1 = convert_one_hot(digits[:, 1])
+            one_hot_labels_bool = convert_one_hot(labels)
+            loss = criterion(output[0][:, 0:10], one_hot_labels_digits_0)
+            loss += criterion(output[0][:, 10:], one_hot_labels_digits_1)
+            loss += criterion(output[1], one_hot_labels_bool)
+            pred = output[1].detach().max(1)[1]
         else:
             one_hot_labels = convert_one_hot(labels)
             loss = criterion(output, one_hot_labels)
@@ -60,11 +62,13 @@ def test(epoch):
         output = net(images, w_share=weight_sharing_status, aux_loss=aux_labels_status)
 
         if aux_labels_status:
-            one_hot_labels = torch.cat([convert_one_hot(digits[:, 0]), convert_one_hot(digits[:, 1])], dim=1)
-            loss_1 = criterion(output, one_hot_labels)
-            pred_0 = output[:, 0:10].detach().max(1)[1]
-            pred_1 = output[:, 10:].detach().max(1)[1]
-            pred = (pred_0 <= pred_1).long()
+            one_hot_labels_digits_0 = convert_one_hot(digits[:, 0])
+            one_hot_labels_digits_1 = convert_one_hot(digits[:, 1])
+            one_hot_labels_bool = convert_one_hot(labels)
+            loss_1 = criterion(output[0][:, 0:10], one_hot_labels_digits_0)
+            loss_1 += criterion(output[0][:, 10:], one_hot_labels_digits_1)
+            loss_1 += criterion(output[1], one_hot_labels_bool)
+            pred = output[1].detach().max(1)[1]
         else:
             one_hot_labels = convert_one_hot(labels)
             loss_1 = criterion(output, one_hot_labels)
@@ -83,17 +87,14 @@ def test(epoch):
 
 
 def convert_one_hot(original_labels):
-    if aux_labels_status:
-        bits = 10
-    else:
-        bits = 2
+    bits = len(torch.unique(original_labels))
     new_labels = torch.zeros((len(original_labels), bits))
     original_labels = original_labels.view(-1, 1)
     new_labels = new_labels.scatter(1, original_labels, 1)
     return new_labels
 
 
-def start_learning(epoch = 25, w_sharing = 1, aux_labels = 1, print_train = 1, print_test = 1):
+def start_learning(epoch=25, w_sharing=1, aux_labels=1, print_train=1, print_test=1):
     global weight_sharing_status, aux_labels_status, print_train_data, print_test_data
     weight_sharing_status = w_sharing
     aux_labels_status = aux_labels
@@ -111,7 +112,7 @@ def start_learning(epoch = 25, w_sharing = 1, aux_labels = 1, print_train = 1, p
     test_accuracy_list = []
 
     for i in range(epoch):
-        train_loss,  train_accuracy = train(i + 1)
+        train_loss, train_accuracy = train(i + 1)
         train_accuracy_list.append(train_accuracy)
         test_loss, test_accuracy = test(i + 1)
         test_accuracy_list.append(test_accuracy)
@@ -119,4 +120,4 @@ def start_learning(epoch = 25, w_sharing = 1, aux_labels = 1, print_train = 1, p
 
 
 if __name__ == '__main__':
-    start_learning(epoch = 25, w_sharing = 1, aux_labels = 1, print_train = 1, print_test = 1)
+    start_learning(epoch=25, w_sharing=1, aux_labels=1, print_train=1, print_test=1)
