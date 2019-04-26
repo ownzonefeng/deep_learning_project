@@ -1,0 +1,76 @@
+
+Weight sharing:False   Auxiliary losses:False
+====================================================================================================
+Round - 1, train_accuracy 80.70%, test accuracy 80.30%, train time 22.08s
+Round - 2, train_accuracy 80.20%, test accuracy 76.40%, train time 23.16s
+Round - 3, train_accuracy 82.40%, test accuracy 76.10%, train time 23.17s
+Round - 4, train_accuracy 77.50%, test accuracy 75.30%, train time 22.99s
+Round - 5, train_accuracy 77.90%, test accuracy 77.00%, train time 23.31s
+Round - 6, train_accuracy 82.30%, test accuracy 77.10%, train time 23.39s
+Round - 7, train_accuracy 78.00%, test accuracy 73.60%, train time 23.24s
+Round - 8, train_accuracy 79.80%, test accuracy 74.00%, train time 23.05s
+Round - 9, train_accuracy 76.50%, test accuracy 75.50%, train time 23.48s
+Round - 10, train_accuracy 79.30%, test accuracy 77.20%, train time 23.56s
+
+Summary:
+train accuracy 79.46% +/- 2.00%
+test accuracy 76.25% +/- 1.89%
+train time 23.14s +/- 0.42s
+====================================================================================================
+
+Weight sharing:False   Auxiliary losses:True
+====================================================================================================
+Round - 1, train_accuracy 86.60%, test accuracy 85.20%, train time 23.35s
+Round - 2, train_accuracy 87.50%, test accuracy 83.20%, train time 22.83s
+Round - 3, train_accuracy 84.90%, test accuracy 85.10%, train time 23.71s
+Round - 4, train_accuracy 87.70%, test accuracy 84.50%, train time 23.03s
+Round - 5, train_accuracy 86.20%, test accuracy 85.20%, train time 22.90s
+Round - 6, train_accuracy 87.70%, test accuracy 85.00%, train time 22.73s
+Round - 7, train_accuracy 89.30%, test accuracy 87.70%, train time 22.76s
+Round - 8, train_accuracy 89.30%, test accuracy 85.80%, train time 23.21s
+Round - 9, train_accuracy 84.30%, test accuracy 83.50%, train time 22.89s
+Round - 10, train_accuracy 84.50%, test accuracy 84.00%, train time 23.14s
+
+Summary:
+train accuracy 86.80% +/- 1.83%
+test accuracy 84.92% +/- 1.28%
+train time 23.05s +/- 0.30s
+====================================================================================================
+
+Weight sharing:True   Auxiliary losses:False
+====================================================================================================
+Round - 1, train_accuracy 80.20%, test accuracy 77.10%, train time 23.03s
+Round - 2, train_accuracy 80.50%, test accuracy 76.00%, train time 22.88s
+Round - 3, train_accuracy 80.10%, test accuracy 80.30%, train time 23.02s
+Round - 4, train_accuracy 80.80%, test accuracy 76.80%, train time 23.50s
+Round - 5, train_accuracy 79.80%, test accuracy 75.90%, train time 23.06s
+Round - 6, train_accuracy 79.10%, test accuracy 75.50%, train time 22.92s
+Round - 7, train_accuracy 78.60%, test accuracy 77.20%, train time 23.02s
+Round - 8, train_accuracy 78.40%, test accuracy 78.00%, train time 23.27s
+Round - 9, train_accuracy 78.30%, test accuracy 79.20%, train time 22.86s
+Round - 10, train_accuracy 80.60%, test accuracy 79.00%, train time 23.13s
+
+Summary:
+train accuracy 79.64% +/- 0.96%
+test accuracy 77.50% +/- 1.59%
+train time 23.07s +/- 0.19s
+====================================================================================================
+
+Weight sharing:True   Auxiliary losses:True
+====================================================================================================
+Round - 1, train_accuracy 84.30%, test accuracy 82.80%, train time 26.93s
+Round - 2, train_accuracy 84.40%, test accuracy 81.80%, train time 25.86s
+Round - 3, train_accuracy 89.60%, test accuracy 86.60%, train time 27.24s
+Round - 4, train_accuracy 86.60%, test accuracy 86.00%, train time 23.86s
+Round - 5, train_accuracy 87.50%, test accuracy 86.60%, train time 24.68s
+Round - 6, train_accuracy 88.50%, test accuracy 87.80%, train time 23.53s
+Round - 7, train_accuracy 84.30%, test accuracy 83.20%, train time 23.58s
+Round - 8, train_accuracy 86.30%, test accuracy 87.80%, train time 23.59s
+Round - 9, train_accuracy 87.50%, test accuracy 86.10%, train time 23.83s
+Round - 10, train_accuracy 86.30%, test accuracy 84.50%, train time 23.62s
+
+Summary:
+train accuracy 86.53% +/- 1.82%
+test accuracy 85.32% +/- 2.12%
+train time 24.67s +/- 1.46s
+====================================================================================================
