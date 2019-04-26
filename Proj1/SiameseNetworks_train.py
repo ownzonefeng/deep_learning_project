@@ -117,10 +117,10 @@ def start_learning(epoch=25, w_sharing=1, aux_labels=1, print_train=1, print_tes
     data_generation()
     net.apply(weight_init)
 
-    # para_size = 0
-    # for i in net.parameters():
-    #     para_size += torch.prod(torch.tensor(i.size()))
-    # print('Parameters quantity:', para_size.item() // 2, '\n')
+    para_size = 0
+    for i in net.parameters():
+        para_size += torch.prod(torch.tensor(i.size()))
+    #print('Parameters quantity:', para_size.item() // 2, '\n')
 
     train_accuracy_list = torch.empty((1, epoch))
     train_loss_list = torch.empty((1, epoch))
@@ -150,4 +150,4 @@ def start_learning(epoch=25, w_sharing=1, aux_labels=1, print_train=1, print_tes
 
 
 if __name__ == '__main__':
-    _ = start_learning(epoch=25, w_sharing=0, aux_labels=1, print_train=1, print_test=1)
+    _ = start_learning(epoch=25, w_sharing=1, aux_labels=1, print_train=1, print_test=1)

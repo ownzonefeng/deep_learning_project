@@ -14,10 +14,10 @@ log_file = open('train_records.txt', 'w')
 
 for i in [0, 1]:
     for j in [0, 1]:
-        print('\nWeight sharing:', bool(j), '   Auxiliary losses:', bool(i))
+        print('\nWeight sharing:', bool(i), '   Auxiliary losses:', bool(j))
         print("=" * 100)
 
-        log_file.write('\nWeight sharing:' + str(bool(j)) + '   Auxiliary losses:' + str(bool(i)))
+        log_file.write('\nWeight sharing:' + str(bool(i)) + '   Auxiliary losses:' + str(bool(j)))
         log_file.write("\n" + "=" * 100 + "\n")
 
         train_loss_temp = torch.zeros((all_round, epoch))
@@ -28,7 +28,7 @@ for i in [0, 1]:
 
         for r in range(all_round):
             train_loss_temp[r, :], train_accuracy_temp[r, :], test_loss_temp[r, :], test_accuracy_temp[r, :], \
-                train_time_temp[r, :] = start_learning(epoch, j, i, 0, 0)
+                train_time_temp[r, :] = start_learning(epoch, i, j, 0, 0)
             train_accuracy_curr = torch.max(train_accuracy_temp[r, :]).item()
             test_accuracy_curr = torch.max(test_accuracy_temp[r, :]).item()
             train_time_curr = torch.sum(train_time_temp[r, :]).item()
@@ -54,13 +54,13 @@ for i in [0, 1]:
         print('\nSummary:')
         print('train accuracy {0:1.2%} +/- {1:1.2%}'.format(train_summary_mean, train_summary_std))
         print('test accuracy {0:1.2%} +/- {1:1.2%}'.format(test_summary_mean, test_summary_std))
-        print('train time {0:1.2f} +/- {1:1.2f}s'.format(time_summary_mean, time_summary_std))
+        print('train time {0:1.2f}s +/- {1:1.2f}s'.format(time_summary_mean, time_summary_std))
         print('=' * 100)
 
         log_file.write('\nSummary:\n')
         log_file.write('train accuracy {0:1.2%} +/- {1:1.2%}\n'.format(train_summary_mean, train_summary_std))
         log_file.write('test accuracy {0:1.2%} +/- {1:1.2%}\n'.format(test_summary_mean, test_summary_std))
-        log_file.write('train time {0:1.2f} +/- {1:1.2f}s\n'.format(time_summary_mean, time_summary_std))
+        log_file.write('train time {0:1.2f}s +/- {1:1.2f}s\n'.format(time_summary_mean, time_summary_std))
         log_file.write("=" * 100 + "\n")
 
 

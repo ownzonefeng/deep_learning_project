@@ -5,35 +5,35 @@ from torch import nn
 class SiameseNet(nn.Module):
     def __init__(self):
         super().__init__()
-        self.ConvNet1 = nn.Sequential(nn.Conv2d(1, 64, 3, padding=0, stride=1),
+        self.ConvNet1 = nn.Sequential(nn.Conv2d(1, 32, 3, padding=0, stride=1),
                                       nn.Tanh(),
                                       nn.AvgPool2d(2, stride=2, padding=0),
                                       nn.Dropout(0.3),
-                                      nn.Conv2d(64, 70, 3, padding=0, stride=1),
+                                      nn.Conv2d(32, 64, 3, padding=0, stride=1),
                                       nn.Tanh(),
                                       nn.AvgPool2d(2, stride=2, padding=0),
                                       nn.Dropout(0.3)
                                       )
 
-        self.FC1 = nn.Sequential(nn.Linear(280, 90),
+        self.FC1 = nn.Sequential(nn.Linear(256, 128),
                                  nn.Tanh(),
-                                 nn.Linear(90, 10),
+                                 nn.Linear(128, 10),
                                  nn.Softmax(-1)
                                  )
 
-        self.ConvNet2 = nn.Sequential(nn.Conv2d(1, 64, 3, padding=0, stride=1),
+        self.ConvNet2 = nn.Sequential(nn.Conv2d(1, 32, 3, padding=0, stride=1),
                                       nn.Tanh(),
                                       nn.AvgPool2d(2, stride=2, padding=0),
                                       nn.Dropout(0.3),
-                                      nn.Conv2d(64, 70, 3, padding=0, stride=1),
+                                      nn.Conv2d(32, 64, 3, padding=0, stride=1),
                                       nn.Tanh(),
                                       nn.AvgPool2d(2, stride=2, padding=0),
                                       nn.Dropout(0.3)
                                       )
 
-        self.FC2 = nn.Sequential(nn.Linear(280, 90),
+        self.FC2 = nn.Sequential(nn.Linear(256, 128),
                                  nn.Tanh(),
-                                 nn.Linear(90, 10),
+                                 nn.Linear(128, 10),
                                  nn.Softmax(-1)
                                  )
 
