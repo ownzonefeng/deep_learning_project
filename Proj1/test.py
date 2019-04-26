@@ -1,8 +1,8 @@
 from SiameseNetworks_train import start_learning
 import torch
 
-all_round = 2
-epoch = 2
+all_round = 10
+epoch = 25
 
 train_loss = []
 train_accuracy = []
