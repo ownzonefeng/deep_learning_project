@@ -1,7 +1,7 @@
 from SiameseNetworks_train import start_learning
 import torch
 
-all_round = 10
+all_round = 20
 epoch = 25
 
 train_loss = []
