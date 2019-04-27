@@ -39,7 +39,7 @@ class SiameseNet(nn.Module):
 
         self.Combine = nn.Sequential(nn.Linear(20, 2), nn.Softmax(-1))
 
-    def forward(self, img_pair, w_share=False, aux_loss=False):
+    def forward(self, img_pair, w_share=True, aux_loss=True):
         if w_share:
             conv_net_list = [self.ConvNet1, self.ConvNet1]
             fc_list = [self.FC1, self.FC1]
