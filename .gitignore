@@ -5,3 +5,4 @@ test/data/mnist/raw/train-images-idx3-ubyte
 test/data/mnist/raw/train-labels-idx1-ubyte
 .DS_Store
 .DS_Store
+Proj1/data/*
