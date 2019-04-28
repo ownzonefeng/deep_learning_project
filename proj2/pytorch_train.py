@@ -12,7 +12,7 @@ model = nn.Sequential(nn.Linear(2, 25),
                       nn.Linear(25, 25),
                       nn.ReLU(),
                       nn.Linear(25, 2),
-                      nn.tanh())
+                      nn.Tanh())
 optimizer = torch.optim.SGD(model.parameters(),lr=1e-1)
 
 for epoch in range(50):
