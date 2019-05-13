@@ -15,14 +15,10 @@ class LeNet(nn.Module):
 
         self.FC = nn.Sequential(nn.Linear(256, 128),
                                 nn.Sigmoid(),
-                                nn.Linear(128, 64),
-                                nn.Sigmoid(),
-                                nn.Linear(64, 10),
+                                nn.Linear(128, 10),
                                 nn.Softmax(-1))
 
     def forward(self, img):
-        img = img[:, 0]
-        img = torch.unsqueeze(img, dim=1)
         output = self.ConvNet(img)
         output = output.view(output.shape[0], -1)
         output = self.FC(output)

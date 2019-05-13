@@ -7,6 +7,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
 
 
+
 data_train = MNIST('./data/mnist',
                    download=True,
                    transform=transforms.Compose([
@@ -32,7 +33,7 @@ data_test_loader = DataLoader(data_test, batch_size=20)
 
 net = LeNet()
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.Adam(net.parameters(), lr=1.2e-2)
+optimizer = optim.Adam(net.parameters(), lr=1e-2)
 
 
 def train(epoch):
@@ -71,6 +72,6 @@ def test(epoch):
         epoch, avg_loss.detach().item(), float(total_correct) / len(data_test)))
 
 
-for i in range(5):
+for i in range(25):
     _, _, epo = train(i)
     test(epo + 1)
