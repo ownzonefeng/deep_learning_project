@@ -1,5 +1,4 @@
 from torch import nn
-import torch
 
 
 class LeNet(nn.Module):
@@ -8,14 +7,26 @@ class LeNet(nn.Module):
 
         self.ConvNet = nn.Sequential(nn.Conv2d(1, 32, 3, padding=0, stride=1),
                                      nn.ReLU(),
-                                     nn.MaxPool2d(2, stride=2, padding=0),
+                                     nn.AvgPool2d(2, stride=2, padding=0),
                                      nn.Conv2d(32, 64, 3, padding=0, stride=1),
                                      nn.ReLU(),
-                                     nn.MaxPool2d(2, stride=2, padding=0))
+                                     nn.AvgPool2d(2, stride=2, padding=0))
 
         self.FC = nn.Sequential(nn.Linear(256, 128),
-                                nn.Sigmoid(),
+                                nn.ReLU(),
                                 nn.Linear(128, 10),
+                                nn.Softmax(-1))
+
+        self.ConvNet2 = nn.Sequential(nn.Conv2d(1, 6, 3, padding=0, stride=1),
+                                     nn.Tanh(),
+                                     nn.AvgPool2d(2, stride=2, padding=0),
+                                     nn.Conv2d(6, 16, 3, padding=0, stride=1),
+                                     nn.Tanh(),
+                                     nn.AvgPool2d(2, stride=2, padding=0))
+
+        self.FC2 = nn.Sequential(nn.Linear(64, 32),
+                                nn.Tanh(),
+                                nn.Linear(32, 10),
                                 nn.Softmax(-1))
 
     def forward(self, img):

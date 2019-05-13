@@ -72,6 +72,6 @@ def test(epoch):
         epoch, avg_loss.detach().item(), float(total_correct) / len(data_test)))
 
 
-for i in range(25):
+for i in range(5):
     _, _, epo = train(i)
     test(epo + 1)
