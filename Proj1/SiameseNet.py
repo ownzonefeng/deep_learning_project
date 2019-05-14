@@ -37,6 +37,30 @@ class SiameseNet(nn.Module):
                                  nn.Softmax(-1)
                                  )
 
+        # self.ConvNet1 = nn.Sequential(nn.Conv2d(1, 32, 3, padding=0, stride=1),
+        #                              nn.Tanh(),
+        #                              nn.AvgPool2d(2, stride=2, padding=0),
+        #                              nn.Conv2d(32, 64, 3, padding=0, stride=1),
+        #                               nn.Tanh(),
+        #                              nn.AvgPool2d(2, stride=2, padding=0))
+        #
+        # self.FC1 = nn.Sequential(nn.Linear(256, 128),
+        #                          nn.Tanh(),
+        #                         nn.Linear(128, 10),
+        #                         nn.Softmax(-1))
+        #
+        # self.ConvNet2 = nn.Sequential(nn.Conv2d(1, 32, 3, padding=0, stride=1),
+        #                               nn.Tanh(),
+        #                              nn.AvgPool2d(2, stride=2, padding=0),
+        #                              nn.Conv2d(32, 64, 3, padding=0, stride=1),
+        #                               nn.Tanh(),
+        #                              nn.AvgPool2d(2, stride=2, padding=0))
+        #
+        # self.FC2 = nn.Sequential(nn.Linear(256, 128),
+        #                          nn.Tanh(),
+        #                         nn.Linear(128, 10),
+        #                         nn.Softmax(-1))
+
         self.Combine = nn.Sequential(nn.Linear(20, 2), nn.Softmax(-1))
 
     def forward(self, img_pair, w_share=True, aux_loss=True):
