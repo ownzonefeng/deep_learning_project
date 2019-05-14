@@ -2,34 +2,17 @@ from LeNet import LeNet
 import torch
 import torch.nn as nn
 import torch.optim as optim
-from torchvision.datasets.mnist import MNIST
-import torchvision.transforms as transforms
 from torch.utils.data import DataLoader
+from PairDataset import PairDataset
+import dlc_practical_prologue as prologue
 
 
-
-data_train = MNIST('./data/mnist',
-                   download=True,
-                   transform=transforms.Compose([
-                       transforms.Resize((14, 14)),
-                       transforms.ToTensor()]))
-data_test = MNIST('./data/mnist',
-                  train=False,
-                  download=True,
-                  transform=transforms.Compose([
-                      transforms.Resize((14, 14)),
-                      transforms.ToTensor()]))
-data_train_loader = DataLoader(
-    data_train, batch_size=200, shuffle=True, num_workers=12)
-data_test_loader = DataLoader(data_test, batch_size=1024, num_workers=12)
-
-'''
 data = prologue.generate_pair_sets(1000)
 data_train = PairDataset(data, train=True, aux_labels=True)
 data_test = PairDataset(data, train=False, aux_labels=True)
-data_train_loader = DataLoader(data_train, batch_size=20, shuffle=False)
-data_test_loader = DataLoader(data_test, batch_size=20)
-'''
+data_train_loader = DataLoader(data_train, batch_size=100, shuffle=False)
+data_test_loader = DataLoader(data_test, batch_size=100)
+
 
 net = LeNet()
 criterion = nn.CrossEntropyLoss()
@@ -39,7 +22,9 @@ optimizer = optim.Adam(net.parameters(), lr=1e-2)
 def train(epoch):
     net.train()
     loss_list, batch_list = [], []
-    for i, (images, labels) in enumerate(data_train_loader):
+    for i, (images, labels, digits) in enumerate(data_train_loader):
+        images = torch.unsqueeze(images[:, 0], 1)
+        labels = digits[:, 0]
         optimizer.zero_grad()
         output = net(images)
 
@@ -60,7 +45,9 @@ def test(epoch):
     net.eval()
     total_correct = 0
     avg_loss = 0.0
-    for i, (images, labels) in enumerate(data_test_loader):
+    for i, (images, labels, digits) in enumerate(data_test_loader):
+        images = torch.unsqueeze(images[:, 0], 1)
+        labels = digits[:, 0]
         output = net(images)
         avg_loss += criterion(output, labels).sum()
         pred = output.detach().max(1)[1]
@@ -72,6 +59,6 @@ def test(epoch):
         epoch, avg_loss.detach().item(), float(total_correct) / len(data_test)))
 
 
-for i in range(5):
+for i in range(25):
     _, _, epo = train(i)
     test(epo + 1)

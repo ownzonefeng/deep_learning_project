@@ -112,7 +112,6 @@ def start_learning(epoch=25, w_sharing=1, aux_labels=1, print_train=1, print_tes
     global net, criterion, optimizer
     net = SiameseNet()
     criterion = nn.BCELoss()
-    # optimizer = optim.Adagrad(net.parameters(), lr=1e-2)
     optimizer = optim.Adam(net.parameters(), lr=1e-2)
 
     data_generation()
@@ -151,4 +150,4 @@ def start_learning(epoch=25, w_sharing=1, aux_labels=1, print_train=1, print_tes
 
 
 if __name__ == '__main__':
-    _ = start_learning(epoch=25, w_sharing=1, aux_labels=1, print_train=1, print_test=1)
+    _ = start_learning(epoch=25, w_sharing=0, aux_labels=0, print_train=1, print_test=1)
