@@ -6,29 +6,31 @@ from torch.utils.data import DataLoader
 from PairDataset import PairDataset
 import dlc_practical_prologue as prologue
 
-
+# generate train data and test data with helper
 data = prologue.generate_pair_sets(1000)
+
+# create torch style data set
 data_train = PairDataset(data, train=True, aux_labels=True)
 data_test = PairDataset(data, train=False, aux_labels=True)
+
+# create data loader
 data_train_loader = DataLoader(data_train, batch_size=100, shuffle=False)
 data_test_loader = DataLoader(data_test, batch_size=100)
 
-
+# initialize network, criterion, optimizer
 net = LeNet()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(net.parameters(), lr=1e-2)
 
 
 def train(epoch):
-    net.train()
+    net.train() # train mode
     loss_list, batch_list = [], []
     for i, (images, labels, digits) in enumerate(data_train_loader):
         images = torch.unsqueeze(images[:, 0], 1)
         labels = digits[:, 0]
         optimizer.zero_grad()
         output = net(images)
-
-        pred = output.detach().max(1)[1]
 
         loss = criterion(output, labels)
 
@@ -42,7 +44,7 @@ def train(epoch):
 
 
 def test(epoch):
-    net.eval()
+    net.eval() # evaluation mode
     total_correct = 0
     avg_loss = 0.0
     for i, (images, labels, digits) in enumerate(data_test_loader):
