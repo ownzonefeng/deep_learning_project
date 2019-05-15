@@ -44,5 +44,5 @@ The architechture of siamese networks.
 ### `Plot`
 The output folder of `Visualisation.ipynb`. This folder contains some plots of training process.
 
-### `Train data records\
+### `Train data records`
 The output folder of `test.py`. This folder contains raw data of training process.
