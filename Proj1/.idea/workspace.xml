@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64bafaf2-52f1-4f54-b88b-acc39eb7a759" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeNet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LeNet_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/LeNet_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SiameseNet.py" beforeDir="false" afterPath="$PROJECT_DIR$/SiameseNet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SiameseNetworks_train.py" beforeDir="false" afterPath="$PROJECT_DIR$/SiameseNetworks_train.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_accuracy.pt" beforeDir="false" afterPath="$PROJECT_DIR$/test_accuracy.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_loss.pt" beforeDir="false" afterPath="$PROJECT_DIR$/test_loss.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_accuracy.pt" beforeDir="false" afterPath="$PROJECT_DIR$/train_accuracy.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_loss.pt" beforeDir="false" afterPath="$PROJECT_DIR$/train_loss.pt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_records.txt" beforeDir="false" afterPath="$PROJECT_DIR$/train_records.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/train_time.pt" beforeDir="false" afterPath="$PROJECT_DIR$/train_time.pt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Visualisation.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Visualisation.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/snn_aux.onnx" beforeDir="false" afterPath="$PROJECT_DIR$/snn_aux.onnx" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -23,7 +14,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/Proj1$LeNet_train.coverage" NAME="LeNet_train Coverage Results" MODIFIED="1557865288185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/Proj1$test.coverage" NAME="test Coverage Results" MODIFIED="1556311496902" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/Proj1$SiameseNetworks_train.coverage" NAME="SiameseNetworks_train Coverage Results" MODIFIED="1557857581972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Proj1$SiameseNetworks_train.coverage" NAME="SiameseNetworks_train Coverage Results" MODIFIED="1557921356735" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -43,7 +34,7 @@
     <session id="-100839465">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.11" value="1" />
@@ -66,92 +57,20 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="1" />
-          <entry key="py" value="2823" />
-          <entry key="txt" value="42" />
+          <entry key="py" value="2824" />
+          <entry key="txt" value="72" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="43" />
-          <entry key="Python" value="2823" />
+          <entry key="PLAIN_TEXT" value="73" />
+          <entry key="Python" value="2824" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/SiameseNetworks_train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1695">
-              <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SiameseNet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
-              <folding>
-                <element signature="e#0#12#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LeNet.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LeNet_train.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="35" lean-forward="true" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/dlc_practical_prologue.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-              <folding>
-                <element signature="e#1#13#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/PairDataset.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -224,7 +143,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.LeNet_train">
+  <component name="RunManager" selected="Python.SiameseNetworks_train">
     <configuration name="LeNet_train" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Proj1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -334,7 +253,14 @@
       <option name="project" value="LOCAL" />
       <updated>1557856061086</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Improve the performance of SNN">
+      <created>1557866663468</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1557866663468</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -348,14 +274,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.26800978" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.37755102" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.37755102" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -408,7 +333,8 @@
     <MESSAGE value="Adjust SNN structure" />
     <MESSAGE value="Minor change" />
     <MESSAGE value="adjust SNN" />
-    <option name="LAST_COMMIT_MESSAGE" value="adjust SNN" />
+    <MESSAGE value="Improve the performance of SNN" />
+    <option name="LAST_COMMIT_MESSAGE" value="Improve the performance of SNN" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$USER_HOME$/anaconda3/envs/deeplearning/lib/python3.7/site-packages/torch/nn/modules/module.py">
@@ -425,25 +351,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dlc_practical_prologue.py">
+    <entry file="file://$PROJECT_DIR$/SiameseNetworks_train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" selection-start-line="1" selection-end-line="1" />
+        <state relative-caret-position="1830">
+          <caret line="122" column="5" selection-start-line="122" selection-start-column="5" selection-end-line="122" selection-end-column="5" />
           <folding>
-            <element signature="e#1#13#0" expanded="true" />
+            <element signature="e#0#41#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/PairDataset.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
+    <entry file="file://$PROJECT_DIR$/SiameseNet.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        <state relative-caret-position="600">
+          <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#12#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -457,27 +380,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LeNet_train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="35" lean-forward="true" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
+        <state relative-caret-position="-412">
+          <caret line="5" column="35" selection-start-line="5" selection-start-column="35" selection-end-line="5" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SiameseNet.py">
+    <entry file="file://$PROJECT_DIR$/test.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="40" column="25" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="25" />
+        <state relative-caret-position="384">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding>
-            <element signature="e#0#12#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SiameseNetworks_train.py">
+    <entry file="file://$PROJECT_DIR$/PairDataset.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/dlc_practical_prologue.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1695">
-          <caret line="113" column="28" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="28" />
+        <state relative-caret-position="-987">
+          <caret line="1" selection-start-line="1" selection-end-line="1" />
           <folding>
-            <element signature="e#0#41#0" expanded="true" />
+            <element signature="e#1#13#0" expanded="true" />
           </folding>
         </state>
       </provider>
