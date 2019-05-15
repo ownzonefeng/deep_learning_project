@@ -64,10 +64,11 @@ for i in [0, 1]:
         log_file.write("=" * 100 + "\n")
 
 
-torch.save(train_loss, 'train_loss.pt')
-torch.save(train_accuracy, 'train_accuracy.pt')
-torch.save(test_loss, 'test_loss.pt')
-torch.save(test_accuracy, 'test_accuracy.pt')
-torch.save(train_time, 'train_time.pt')
+torch.save(train_loss, './Train data records/train_loss.pt')
+torch.save(train_accuracy, './Train data records/train_accuracy.pt')
+torch.save(test_loss, './Train data records/test_loss.pt')
+torch.save(test_accuracy, './Train data records/test_accuracy.pt')
+torch.save(train_time, './Train data records/train_time.pt')
+
 
 log_file.close()
