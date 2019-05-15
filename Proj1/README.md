@@ -2,7 +2,7 @@
 **`Team Members`:** Compare two digits with siamese network
 **`Team Members`:** FENG Wentao, SUN Zhaodong, WANG Yunbei
 
-In this project, we aim to simulate the process of discovering the Higgs particle since Higgs particles are essential for explaining why other particles have mass. Our goal is to train a binary classifier by using given training set and then use the obtained model to predict whether an event was signal (a Higgs boson) or a background (something else). We used the logistic regression model and the ridge regression model to predict on the test set and achieved the highest accuracy of 0.831 and 0.822 respectively. In the final, we chose to submit the ridge regression model since it has reasonable computing time and acceptable accuracy.
+In this project, we first build a convolution neural network to recognize hand-written digits. Then, based on this model, we have built a siamese convolution neural network to compare two visible digits. We also apply weight sharing and auxiliary loss to achieve the objective. Finally, we discuss the influence of those techniques.
 
 **Instructions**:
 1. Please make sure that the `PyTorch` is installed and the internet connection is established.
@@ -15,4 +15,4 @@ The followings are some descriptions for the modules or functions we used or des
 
 ## Modules
 ### `test.py`
-
+This is the main module. Running this module will start 20 rounds training for each combination of weight sharing status and auxiliary loss status.
