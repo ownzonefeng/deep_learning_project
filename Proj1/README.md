@@ -1,7 +1,7 @@
 # EPFL - Deep Learning Project 1 
 **`Project name`:** Compare two digits with siamese network
 
-**`Team Members`:** FENG Wentao, SUN Zhaodong, WANG Yunbei
+**`Team members`:** FENG Wentao, SUN Zhaodong, WANG Yunbei
 
 In this project, we first build a convolution neural network to recognize hand-written digits. Then, based on this model, we have built a siamese convolution neural network to compare two visible digits. We also apply weight sharing and auxiliary loss to achieve the objective. Finally, we discuss the influence of those techniques.
 
