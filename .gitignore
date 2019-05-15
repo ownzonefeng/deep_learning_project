@@ -1,6 +1,0 @@
-
-test/data/mnist/raw/t10k-images-idx3-ubyte
-test/data/mnist/raw/t10k-labels-idx1-ubyte
-test/data/mnist/raw/train-images-idx3-ubyte
-test/data/mnist/raw/train-labels-idx1-ubyte
-Proj2/.DS_Store

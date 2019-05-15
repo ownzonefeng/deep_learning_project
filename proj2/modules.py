@@ -263,4 +263,5 @@ class SGD():
         for m in self.model.modules:
             if m.param()!=[]:
                 m.weight -= self.lr * m.weight_grad
-                m.bias -= self.lr * m.bias_grad
+                if m.ifbias:
+                    m.bias -= self.lr * m.bias_grad

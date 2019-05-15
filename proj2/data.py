@@ -26,6 +26,15 @@ class dataloader():
             self.n += self.batchsize
             return self.x[start:end], self.label_1d[start:end], self.label_2d[start:end]
 
+    def next(self):
+        start = self.n
+        end = self.n + self.batchsize
+        if start==1000:
+            raise StopIteration
+        else:
+            self.n += self.batchsize
+            return self.x[start:end], self.label_1d[start:end], self.label_2d[start:end]
+
     def __len__(self):
         return 1000/self.batchsize
 
