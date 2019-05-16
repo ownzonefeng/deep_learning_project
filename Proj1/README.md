@@ -8,10 +8,7 @@ In this project, we first build a convolution neural network to recognize hand-w
 **Instructions**:
 1. Please make sure that the `PyTorch` is installed, and the internet connection is established.
 2. Run `test.py`, the process of training will be printed on the screen and saved to `train_records.txt`.
-<<<<<<< HEAD
-=======
 3. `report.pdf` is the report of this project.
->>>>>>> upstream/master
 
 The followings are some descriptions for the modules or functions we used or designed for this project.
 
